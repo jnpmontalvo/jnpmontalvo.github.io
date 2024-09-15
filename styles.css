@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin:0;
     padding:0;
+    
 }
 
 /* css variables 
@@ -31,16 +32,21 @@ body {
 
 a {
     text-decoration: none;
-    color: var(--blue);
-    /* need to add hover because text decoration was removed (line 31) */
+    /* need to add hover because text decoration was removed (line 34) */
+    color: var(--base);
     &:hover {
-       text-decoration: underline; 
+        background-color: var(--base-100);
+        border-radius: 10px;
+        text-decoration: none;
+        width: 100%;
     }
 }
 
 header {
     padding-top: 10px;
     padding-bottom: 10px;
+    /* padding-left: 100px;
+    padding-right: 100px; */
     display: flex;
     justify-content: space-between;
     max-width: 1440px;
@@ -271,10 +277,12 @@ h1 {
     }
 }
 
+/* LOGOS SLIDING MECHANISM */
 @keyframes marquee {
     0% {
         transform: translateX(0);
     }
+    /* at 50% of all elements, slide back */
     50% {
         transform: translateX(-100%);
     }
@@ -334,7 +342,9 @@ h3 {
         .right-column {
             flex: 1;
             p {
-
+                margin-bottom: 20px;
+                font-size: 24px;
+                line-height: 40px;
             }
         }
     }
@@ -346,6 +356,19 @@ h3 {
         gap: 30px;
         @media (max-width: 1024px) {
             flex-direction: column;
+        }
+        a {
+            text-decoration: none;
+            /* need to add hover because text decoration was removed (line 34) */
+            color: var(--base-800);
+            display: block;
+            padding: 10px 10px;
+            &:hover {
+                background-color: var(--base-100);
+                border-radius: 10px;
+                text-decoration: none;
+                width: 100%;
+            }
         }
         article {
             background-color: var(--yellow-100);
@@ -402,6 +425,200 @@ h3 {
                     img {
                         transform: scale(1.2);
                     }
+                }
+            }
+        }
+    }
+}
+
+.bento {
+    .bento-grid {
+        display: grid;
+        grid-gap: 30px;
+        /* 5 col x 4 row grid set up */
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        height: 960px;
+        @media (max-width:1024px){
+            /* for smaller screen sizes, change the grid layout completely and add media decorator to all other grid nth-childs*/
+            grid-template-rows: repeat(8, 1fr);
+        }
+        @media (max-width: 760px) {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            height: auto;
+        }
+        .bento-item {
+            padding: 30px;
+            background: var(--base-100);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                /* adjusts sizing of awkward image size */
+                object-fit: cover;
+                border-radius: 15px;
+                transition: ease 5s all;
+            }
+            @media (max-width: 760px) {
+                height: 240px;
+            }
+            /* customize individual grid in the bento by calling nth-child */
+            &:nth-child(1) {
+                grid-column: span 2;
+                grid-row: span 2;
+                @media (max-width:1024px){
+                    grid-column: span 2;
+                    grid-row: span 2;
+                }
+            }
+            &:nth-child(2) {
+                grid-column: span 2;
+                grid-row: span 1;
+                @media (max-width:1024px){
+                    grid-column: span 3;
+                    grid-row: span 2;
+                }
+            }
+            &:nth-child(3) {
+                grid-column: span 1;
+                grid-row: span 1;
+                @media (max-width:1024px){
+                    grid-column: span 3;
+                    grid-row: span 2;
+                }
+            }
+            &:nth-child(4) {
+                grid-column: span 1;
+                grid-row: span 1;
+                @media (max-width:1024px){
+                    grid-column: span 2;
+                    grid-row: span 4;
+                }
+            }
+            &:nth-child(5) {
+                grid-column: span 2;
+                grid-row: span 1;
+                @media (max-width:1024px){
+                    grid-column: span 3;
+                    grid-row: span 4;
+                }
+            }
+            &:nth-child(6) {
+                grid-column: span 5;
+                grid-row: span 3;
+                @media (max-width:1024px){
+                    grid-column: span 5;
+                    grid-row: span 2;
+                }
+            }
+        }
+    }
+}
+
+.chatbot {
+    .chatbot-blue {
+        background-color: var(--blue-100);
+        border-radius: 30px;
+        padding: 30px;
+        gap: 30px;
+        display: flex;
+        @media (max-width:1024px) {
+            flex-direction:column;
+        }
+        p {
+            margin-bottom: 30px;
+        }
+        .chat-info {
+            flex: 3;
+            padding-right: 30px;
+        }
+        .chat-box {
+            flex: 4;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            .scroll-area {
+                max-height: 300px;
+                height: 300px;
+                overflow-y: scroll;
+                ul {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    gap: 15px;
+                    li {
+                        display: flex;
+                        align-items: center;
+                        gap: 15px;
+
+                        /* every user (even) message layout will be flipped in the other direction */
+                        &:nth-child(even) {
+                            text-align: right;
+                            justify-content:flex-end;
+                            flex-direction: row-reverse;
+
+                            span{
+                                background-color: var(--yellow);
+                            }
+                        }
+
+                        span {
+                            background-color: var(--blue-400);
+                            width: 64px;
+                            height: 64px;
+                            border-radius: 50%;
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            /* for screen responsiveness */
+                            @media(max-width: 768px) {
+                                width: 48px;
+                                height: 48px;
+                            }
+
+                        }
+                        div {
+                            /* use up remaining space of parent tags making the AI and User tags circle */
+                            flex: 1;
+                        }
+                    }
+                }
+            }
+
+            /* chat message input */
+            .chat-message{
+                display: flex;
+                margin-top: 15px;
+                gap: 15px;
+                input: {
+                    border-radius:10px;
+                    flex:1;
+                    padding: 15px;
+                    border:1px solid transparent;
+                    background-color: var(--base-100);
+                    &:hover {
+                        outline: none;
+                        background-color: white;
+                        border: 1px solid var(--base-100)
+                    }
+                    &:focus {
+                        outline: none;
+                        background-color: white;
+                        border: 1px solid var(--base-100)
+                    }
+                }
+                button {
+                    border: none;
+                    cursor: pointer;
                 }
             }
         }
