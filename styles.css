@@ -38,6 +38,7 @@ a {
     text-decoration: none;
     /* need to add hover because text decoration was removed (line 34) */
     color: var(--base);
+    transition: ease 0.5s all;
 }
 
 header {
@@ -213,6 +214,33 @@ h1 {
             @media (max-width:1024px) {
                 display:none;
             }
+        }
+        .disclaimer {
+            font-size: 16px;
+
+            
+
+            p {
+                display: none;
+                a {
+                    font-weight: 800;
+                    transition: ease 0.5s all;
+                    &:hover {
+                        background-color: var(--base-100);
+                        border-radius: 2px;
+                        text-decoration: none;
+                    }
+                }
+                &.active {
+                    display: inline-block;
+                }
+            }
+
+            /* toggleDisclaimer() will toggle this item */
+            .mobile-toggle {
+                font-size: 16px;
+            }
+
         }
         .call-to-action {
             margin-top: 20px;

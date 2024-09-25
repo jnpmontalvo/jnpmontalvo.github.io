@@ -2,6 +2,11 @@ function toggleMobileMenu(){
         document.getElementById("menu").classList.toggle("active");
 }
 
+function toggleDisclaimer(){
+  document.getElementById("disclaimer").classList.toggle("active");
+}
+
+
 function showSlides() {
   let i;
   let slides = document.getElementsByClassName("mySlides");
